@@ -10,6 +10,7 @@
 #include "datamanager.h"
 
 #include <iostream>
+#include <math.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -35,7 +36,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::rxData(QString head, QString value) {
     if(head == "sb/speed/pitot") {
-        ui->lcdSpeed1->display(value);
+        double v = value.toDouble();
+        ui->lcdSpeed1->display(round(v*10)/10);
+    } else if(head == "sb/speed/gps") {
+        double v = value.toDouble();
+        ui->lcdSpeed2->display(round(v*10)/10);
     } else {
         log->print(head+": "+value);
     }
