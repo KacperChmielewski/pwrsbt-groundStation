@@ -14,7 +14,7 @@ private:
     QPushButton* button;
 public:
     explicit logger(QObject *parent = nullptr);
-    void setLoggerUI(QPlainTextEdit *txt, QPushButton *btn);
+    void setUI(QPlainTextEdit *txt, QPushButton *btn);
     void print(QString text);
     void print(const char* text);
     void clean();

@@ -24,29 +24,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     dataManager* dm = new dataManager(this);
     dm->setLogger(log);
-
-    ui->hostLine->setText(QString("assistantintegration.dev.blebox.eu"));
-    ui->portLine->setText(QString("1883"));
+    dm->setUI(ui->hostLine, ui->portLine, ui->mqConnect);
 
     QMqttClient* mClient;
     mClient = new QMqttClient(this);
-    mClient->setHostname(ui->hostLine->text());
-    mClient->setPort((qint16) ui->hostLine->text().toInt()); // TODO: implicit cast
 
-    mClient->setPort(1883);
-    mClient->setHostname(QString("assistantintegration.dev.blebox.eu"));
 
     const QString content = QLatin1String(": State Change")
                     + QString::number(mClient->state())
                     + QLatin1Char('\n');
     log->print(content);
 
-    connect(mClient, &QMqttClient::stateChanged,  this, [this]() {
-//        extern logger* log;
-//        log->print("status");
-        std::cout << "status" << std::endl;
-
-    });
 
 
     connect(mClient, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
