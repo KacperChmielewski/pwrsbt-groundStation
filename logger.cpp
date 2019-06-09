@@ -5,27 +5,27 @@ logger::logger(QObject *parent) : QObject(parent) {
 }
 
 void logger::setUI(QPlainTextEdit *txt, QPushButton *btn) {
-    this->textEdit = txt;
-    this->button = btn;
+    textEdit = txt;
+    button = btn;
 
-    this->textEdit->setReadOnly(true);
+    textEdit->setReadOnly(true);
 
-    connect(this->button, SIGNAL (released()), this, SLOT (cleanButtonClicked()));
+    connect(button, SIGNAL (released()), this, SLOT (cleanButtonClicked()));
 }
 
 
 void logger::print(QString text){
-    this->textEdit->insertPlainText(text + "\r\n");
+    textEdit->insertPlainText(text + "\r\n");
 }
 
 void logger::print(const char* text){
-    this->print(QString(text));
+    print(QString(text));
 }
 
 void logger::clean() {
-    this->textEdit->clear();
+    textEdit->clear();
 }
 
 void logger::cleanButtonClicked() {
-    this->clean();
+    clean();
 }
