@@ -29,14 +29,12 @@ SOURCES += \
         datamanager.cpp \
         logger.cpp \
         main.cpp \
-        mainwindow.cpp \
-        superlogger.cpp
+        mainwindow.cpp
 
 HEADERS += \
         datamanager.h \
         logger.h \
-        mainwindow.h \
-        superlogger.h
+        mainwindow.h
 
 FORMS += \
         mainwindow.ui

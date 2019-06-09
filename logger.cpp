@@ -1,24 +1,28 @@
 #include "logger.h"
 
-#include <iostream>
+logger::logger(QObject *parent) : QObject(parent) {
 
-////logger::logger(QPlainTextEdit* txt, QPushButton* btn) : textEdit(txt), button(btn)
-////{
-////    std::cout << "test" << std::endl;
-////}
+}
 
-//logger::logger(QObject *parent): QObject(parent) {
+void logger::setLoggerUI(QPlainTextEdit *txt, QPushButton *btn) {
+    this->textEdit = txt;
+    this->button = btn;
+    connect(this->button, SIGNAL (released()), this, SLOT (cleanButtonClicked()));
+}
 
-//}
 
-//logger::~logger(){
+void logger::print(QString text){
+    this->textEdit->insertPlainText(text + "\r\n");
+}
 
-//}
+void logger::print(const char* text){
+    this->print(QString(text));
+}
 
-//void logger::print(QString text) {
-////    this->textEdit->insertPlainText(text + "\r\n");
-//}
+void logger::clean() {
+    this->textEdit->clear();
+}
 
-//void logger::print(const char* text) {
-//    this->print(QString(text));
-//}
+void logger::cleanButtonClicked() {
+    this->clean();
+}
