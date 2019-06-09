@@ -26,13 +26,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        datamanager.cpp \
         logger.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
-        datamanager.h \
         logger.h \
         mainwindow.h
 
