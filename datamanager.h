@@ -22,6 +22,7 @@ private:
     QPushButton* qConnect;
 
     void mqttConnect();
+    void uiUpdate();
 
 public:
     explicit dataManager(QObject *parent = nullptr);

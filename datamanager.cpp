@@ -24,8 +24,6 @@ void dataManager::setUI(QLineEdit* host, QLineEdit* port, QPushButton* button) {
     qPort->setText(QString("1883"));
 
     connect(qConnect, SIGNAL (released()), this, SLOT (connectButtonClicked()));
-
-
 }
 
 void dataManager::mqttStatusReport() {
@@ -46,7 +44,20 @@ void dataManager::mqttStatusReport() {
     log->print(QString(QLatin1String("MQTT: status: ") + state));
 
     // todo kontrolki
+    uiUpdate();
 
+}
+
+void dataManager::uiUpdate() {
+    if(mClient->state() == QMqttClient::ClientState::Connected) {
+        qHost->setDisabled(true);
+        qPort->setDisabled(true);
+        qConnect->setText("Disconnect");
+    } else {
+        qHost->setDisabled(false);
+        qPort->setDisabled(false);
+        qConnect->setText("Connect");
+    }
 }
 
 void dataManager::connectButtonClicked() {
