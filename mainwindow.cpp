@@ -6,7 +6,8 @@
 #include "QtMqtt/QMqttClient"
 #include "QtMqtt/QMqttTopicFilter"
 
-#include "logger.h"
+//#include "logger.h"
+#include "superlogger.h"
 
 #include <iostream>
 
@@ -16,8 +17,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    logger* log = new logger(this);
-//    logger* log = new logger(ui->wLoggerBox, ui->wLoggerButton);
+    superLogger* log = new superLogger(this);
+    log->setLoggerUI(ui->wLoggerBox, ui->wLoggerButton);
+
     log->print(QString("eluwaaa"));
     log->print(QString("eluwaaa"));
     log->print(QString("eluwaaa"));
