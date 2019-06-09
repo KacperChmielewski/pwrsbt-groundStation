@@ -20,11 +20,11 @@ MainWindow::MainWindow(QWidget *parent) :
     logger* log = new logger(this);
     log->setUI(ui->wLoggerBox, ui->wLoggerButton);
 
-    log->print("siemka");
-
     dataManager* dm = new dataManager(this);
     dm->setLogger(log);
     dm->setUI(ui->hostLine, ui->portLine, ui->mqConnect);
+
+    return;
 
     QMqttClient* mClient;
     mClient = new QMqttClient(this);

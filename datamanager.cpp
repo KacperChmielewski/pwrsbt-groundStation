@@ -5,7 +5,7 @@ dataManager::dataManager(QObject *parent) : QObject(parent)
     this->mClient = new QMqttClient(this);
 
 
-//    connect(this->mClient, SIGNAL(&QMqttClient::stateChanged), this, SLOT( mqttStatusChanged() ) );
+    connect(this->mClient, &QMqttClient::stateChanged, this, &dataManager::mqttStatusChanged);  // todo idk whats goin on here
 
 
 }
@@ -29,8 +29,24 @@ void dataManager::setUI(QLineEdit* host, QLineEdit* port, QPushButton* button) {
 }
 
 void dataManager::mqttStatusReport() {
-    QString(QLatin1String("State Change ")
-    + QString::number(this->mClient->state()));
+
+    QString state;
+
+    switch (this->mClient->state()) {
+    case QMqttClient::ClientState::Disconnected:
+        state = "disconnected";
+        break;
+    case QMqttClient::ClientState::Connecting:
+        state = "connecting";
+        break;
+    case QMqttClient::ClientState::Connected:
+        state = "connected";
+        break;
+    }
+    this->log->print(QString(QLatin1String("MQTT: status: ") + state));
+
+    // todo kontrolki
+
 }
 
 void dataManager::connectButtonClicked() {
