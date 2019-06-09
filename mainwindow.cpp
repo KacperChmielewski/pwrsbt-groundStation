@@ -17,6 +17,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->hostLine->setText(QString("assistantintegration.dev.blebox.eu"));
     ui->portLine->setText(QString("1883"));
 
+    QMqttClient* mClient;
+    mClient = new QMqttClient(this);
+    mClient->setHostname(ui->hostLine->text());
+    mClient->setPort((qint16) ui->hostLine->text().toInt()); // TODO: implicit cast
+
     const QString content = QLatin1String("Testowy log\r\n");
 
     ui->wLoggerBox->setReadOnly(true);
