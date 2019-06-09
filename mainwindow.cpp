@@ -6,8 +6,8 @@
 #include "QtMqtt/QMqttClient"
 #include "QtMqtt/QMqttTopicFilter"
 
-//#include "logger.h"
 #include "logger.h"
+#include "datamanager.h"
 
 #include <iostream>
 
@@ -20,25 +20,10 @@ MainWindow::MainWindow(QWidget *parent) :
     logger* log = new logger(this);
     log->setLoggerUI(ui->wLoggerBox, ui->wLoggerButton);
 
-    log->print(QString("eluwaaa"));
-    log->print(QString("eluwaaa"));
-    log->print(QString("eluwaaa"));
-    log->print(QString("eluwaaa"));
-    log->print(QString("eluwaaa"));
-    log->print(QString("eluwaaa"));
-    log->print(QString("eluwaaa"));
-    log->print(QString("eluwaaa"));
-    log->print(QString("eluwaaa"));
-
-    log->print("siemka");
-    log->print("siemka");
-    log->print("siemka");
-    log->print("siemka");
-    log->print("siemka");
-    log->print("siemka");
-    log->print("siemka");
     log->print("siemka");
 
+    dataManager* dm = new dataManager(this);
+    dm->setLogger(log);
 
     ui->hostLine->setText(QString("assistantintegration.dev.blebox.eu"));
     ui->portLine->setText(QString("1883"));
