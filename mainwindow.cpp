@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->hostLine->setText(QString("assistantintegration.dev.blebox.eu"));
+    ui->portLine->setText(QString("1883"));
 
     const QString content = QLatin1String("Testowy log\r\n");
 
