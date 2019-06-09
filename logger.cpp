@@ -11,6 +11,9 @@ logger::logger(QObject *parent): QObject(parent) {
 
 }
 
+logger::~logger(){
+
+}
 
 void logger::print(QString text) {
 //    this->textEdit->insertPlainText(text + "\r\n");

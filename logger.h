@@ -5,6 +5,8 @@
 #include <QPushButton>
 #include <QString>
 
+#include <QObject>
+
 
 class logger : public QObject
 {
