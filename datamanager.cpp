@@ -87,7 +87,7 @@ void dataManager::mqttSubscribe() {
 }
 
 void dataManager::mqttMessageRX(const QByteArray &message, const QMqttTopicName &topic) {
-    log->print("ramka!");
+    log->print(topic.name() + ": " + message);
 }
 
 void dataManager::uiUpdate() {
