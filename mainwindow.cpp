@@ -52,6 +52,23 @@ void MainWindow::rxData(QString head, QString value) {
         char buff[20];
         sprintf(buff, "%.2f *C", v);
         ui->qBattTemp->setText(QString(buff));
+    } else if(head == "sb/battery/curr") {
+        double v = value.toDouble();
+        char buff[20];
+        sprintf(buff, "%.2f A", v);
+        ui->qBattCurr->setText(QString(buff));
+    } else if(head == "sb/height/front") {
+        double v = value.toDouble();
+        char buff[20];
+        sprintf(buff, "%.1f", v);
+        ui->qTextHeightFront->setText(QString(buff));
+        ui->qBarHeightFront->setValue(v);
+    } else if(head == "sb/height/back") {
+        double v = value.toDouble();
+        char buff[20];
+        sprintf(buff, "%.1f", v);
+        ui->qTextHeightBack->setText(QString(buff));
+        ui->qBarHeightBack->setValue(v);
     } else {
         log->print(head+": "+value);
     }
