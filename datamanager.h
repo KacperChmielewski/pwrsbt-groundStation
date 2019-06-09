@@ -23,6 +23,8 @@ private:
 
     void mqttConnect();
     void mqttDisconnect();
+    void mqttSubscribe();
+    void mqttMessageRX(const QByteArray &message, const QMqttTopicName &topic);
     void uiUpdate();
 
 public:

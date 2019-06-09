@@ -6,7 +6,7 @@ dataManager::dataManager(QObject *parent) : QObject(parent)
 
 
     connect(mClient, &QMqttClient::stateChanged, this, &dataManager::mqttStatusChanged);  // todo idk whats goin on here
-
+    connect(mClient, &QMqttClient::messageReceived, this, &dataManager::mqttMessageRX);
 
 }
 
@@ -31,27 +31,23 @@ void dataManager::mqttStatusReport() {
     QString state;
 
     switch (mClient->state()) {
-    case QMqttClient::ClientState::Disconnected:
+    case QMqttClient::Disconnected:
         state = "disconnected";
         break;
-    case QMqttClient::ClientState::Connecting:
+    case QMqttClient::Connecting:
         state = "connecting";
         break;
-    case QMqttClient::ClientState::Connected:
+    case QMqttClient::Connected:
         state = "connected";
         break;
     }
     log->print(QString(QLatin1String("MQTT: status: ") + state));
-
-    // todo kontrolki
-    uiUpdate();
-
 }
 
 
 
 void dataManager::connectButtonClicked() {
-    if(mClient->state() == QMqttClient::ClientState::Connected) {
+    if(mClient->state() == QMqttClient::Connected) {
         mqttDisconnect();
     } else {
         mqttConnect();
@@ -60,6 +56,9 @@ void dataManager::connectButtonClicked() {
 
 void dataManager::mqttStatusChanged() {
     mqttStatusReport();
+    uiUpdate();
+    mqttSubscribe();
+
 }
 
 
@@ -76,8 +75,23 @@ void dataManager::mqttDisconnect() {
     mClient->disconnectFromHost();
 }
 
+void dataManager::mqttSubscribe() {
+    if(mClient->state() == QMqttClient::Connected){
+        log->print("Subuj");
+
+        auto subscription = mClient->subscribe(QMqttTopicFilter("sb/speed/pitot"));
+        if (!subscription) {
+            log->print("Could not subscribe. Is there a valid connection?");
+        }
+    }
+}
+
+void dataManager::mqttMessageRX(const QByteArray &message, const QMqttTopicName &topic) {
+    log->print("ramka!");
+}
+
 void dataManager::uiUpdate() {
-    if(mClient->state() == QMqttClient::ClientState::Connected) {
+    if(mClient->state() == QMqttClient::Connected) {
         qHost->setDisabled(true);
         qPort->setDisabled(true);
         qConnect->setText("Disconnect");
