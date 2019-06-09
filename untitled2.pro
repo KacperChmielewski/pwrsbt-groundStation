@@ -27,11 +27,13 @@ CONFIG += c++11
 
 SOURCES += \
         datamanager.cpp \
+        logger.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
         datamanager.h \
+        logger.h \
         mainwindow.h
 
 FORMS += \
