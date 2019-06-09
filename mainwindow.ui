@@ -25,7 +25,7 @@
         <widget class="QPlainTextEdit" name="wLoggerBox"/>
        </item>
        <item>
-        <widget class="QPushButton" name="wClearButton">
+        <widget class="QPushButton" name="wLoggerButton">
          <property name="text">
           <string>Clear</string>
          </property>

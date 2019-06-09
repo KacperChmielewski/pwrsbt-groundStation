@@ -6,6 +6,8 @@
 #include "QtMqtt/QMqttClient"
 #include "QtMqtt/QMqttTopicFilter"
 
+#include "logger.h"
+
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -13,6 +15,27 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    logger* log = new logger(ui->wLoggerBox, ui->wLoggerButton);
+    log->print(QString("eluwaaa"));
+    log->print(QString("eluwaaa"));
+    log->print(QString("eluwaaa"));
+    log->print(QString("eluwaaa"));
+    log->print(QString("eluwaaa"));
+    log->print(QString("eluwaaa"));
+    log->print(QString("eluwaaa"));
+    log->print(QString("eluwaaa"));
+    log->print(QString("eluwaaa"));
+
+    log->print("siemka");
+    log->print("siemka");
+    log->print("siemka");
+    log->print("siemka");
+    log->print("siemka");
+    log->print("siemka");
+    log->print("siemka");
+    log->print("siemka");
+
 
     ui->hostLine->setText(QString("assistantintegration.dev.blebox.eu"));
     ui->portLine->setText(QString("1883"));
@@ -22,21 +45,6 @@ MainWindow::MainWindow(QWidget *parent) :
     mClient->setHostname(ui->hostLine->text());
     mClient->setPort((qint16) ui->hostLine->text().toInt()); // TODO: implicit cast
 
-    const QString content = QLatin1String("Testowy log\r\n");
-
-    ui->wLoggerBox->setReadOnly(true);
-    ui->wLoggerBox->insertPlainText(content);
-    ui->wLoggerBox->insertPlainText(content);
-    ui->wLoggerBox->insertPlainText(content);
-    ui->wLoggerBox->insertPlainText(content);
-    ui->wLoggerBox->insertPlainText(content);
-    ui->wLoggerBox->insertPlainText(content);
-    ui->wLoggerBox->insertPlainText(content);
-    ui->wLoggerBox->insertPlainText(content);
-    ui->wLoggerBox->insertPlainText(content);
-
-    const QString content2 = QLatin1String("Testowy log222\r\n");
-    ui->wLoggerBox->insertPlainText(content2);
 
 ////    auto subscription = m_client->subscribe(QMqttTopicFilter(QLatin1String("sb/speed/pitot")));
 ////    if (!subscription) {
