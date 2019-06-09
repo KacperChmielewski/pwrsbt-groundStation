@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     logger* log = new logger(this);
-    log->setLoggerUI(ui->wLoggerBox, ui->wLoggerButton);
+    log->setUI(ui->wLoggerBox, ui->wLoggerButton);
 
     log->print("siemka");
 

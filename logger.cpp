@@ -4,7 +4,7 @@ logger::logger(QObject *parent) : QObject(parent) {
 
 }
 
-void logger::setLoggerUI(QPlainTextEdit *txt, QPushButton *btn) {
+void logger::setUI(QPlainTextEdit *txt, QPushButton *btn) {
     this->textEdit = txt;
     this->button = btn;
     connect(this->button, SIGNAL (released()), this, SLOT (cleanButtonClicked()));
