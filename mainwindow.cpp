@@ -9,9 +9,6 @@
 #include "logger.h"
 #include "datamanager.h"
 
-#include <iostream>
-#include <math.h>
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -37,10 +34,24 @@ MainWindow::~MainWindow()
 void MainWindow::rxData(QString head, QString value) {
     if(head == "sb/speed/pitot") {
         double v = value.toDouble();
-        ui->lcdSpeed1->display(round(v*10)/10);
+        char buff[20];
+        sprintf(buff, "%.1f", v);
+        ui->lcdSpeed1->display(QString(buff));
     } else if(head == "sb/speed/gps") {
         double v = value.toDouble();
-        ui->lcdSpeed2->display(round(v*10)/10);
+        char buff[20];
+        sprintf(buff, "%.1f", v);
+        ui->lcdSpeed2->display(QString(buff));
+    } else if(head == "sb/battery/voltage") {
+        double v = value.toDouble();
+        char buff[20];
+        sprintf(buff, "%.2f V", v);
+        ui->qBattU->setText(QString(buff));
+    } else if(head == "sb/battery/temp") {
+        double v = value.toDouble();
+        char buff[20];
+        sprintf(buff, "%.2f *C", v);
+        ui->qBattTemp->setText(QString(buff));
     } else {
         log->print(head+": "+value);
     }

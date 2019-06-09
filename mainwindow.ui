@@ -204,14 +204,14 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>TextLabel</string>
+          <string>U_batt</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="qBattU">
          <property name="text">
-          <string>TextLabel</string>
+          <string>0</string>
          </property>
         </widget>
        </item>
@@ -260,14 +260,14 @@
        <item row="1" column="0">
         <widget class="QLabel" name="label_11">
          <property name="text">
-          <string>TextLabel</string>
+          <string>temp_batt</string>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLabel" name="label_12">
+        <widget class="QLabel" name="qBattTemp">
          <property name="text">
-          <string>TextLabel</string>
+          <string>0</string>
          </property>
         </widget>
        </item>
