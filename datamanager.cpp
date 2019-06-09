@@ -87,7 +87,8 @@ void dataManager::mqttSubscribe() {
 }
 
 void dataManager::mqttMessageRX(const QByteArray &message, const QMqttTopicName &topic) {
-    log->print(topic.name() + ": " + message);
+//    log->print(topic.name() + ": " + message);
+    emit pushData(topic.name(), QString(message));
 }
 
 void dataManager::uiUpdate() {

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include <logger.h>
+
 namespace Ui {
 class MainWindow;
 }
@@ -14,9 +16,11 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+public slots:
+    void rxData(QString head, QString value);
 private:
     Ui::MainWindow *ui;
+    logger* log;
 };
 
 #endif // MAINWINDOW_H

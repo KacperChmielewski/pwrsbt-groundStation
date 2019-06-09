@@ -34,6 +34,7 @@ public:
     void mqttStatusReport();
 
 signals:
+    void pushData(QString head, QString value);
 public slots:
     void connectButtonClicked();
     void mqttStatusChanged();

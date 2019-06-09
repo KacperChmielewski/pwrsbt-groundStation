@@ -17,15 +17,25 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    logger* log = new logger(this);
+    log = new logger(this);
     log->setUI(ui->wLoggerBox, ui->wLoggerButton);
 
     dataManager* dm = new dataManager(this);
     dm->setLogger(log);
     dm->setUI(ui->hostLine, ui->portLine, ui->mqConnect);
+
+    connect(dm, SIGNAL (pushData(QString, QString)), this, SLOT (rxData(QString, QString)));
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::rxData(QString head, QString value) {
+    log->print(head+": "+value);
+    if(head == "sb/speed/pitot"){
+
+    }
 }
