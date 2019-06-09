@@ -77,9 +77,7 @@ void dataManager::mqttDisconnect() {
 
 void dataManager::mqttSubscribe() {
     if(mClient->state() == QMqttClient::Connected){
-        log->print("Subuj");
-
-        auto subscription = mClient->subscribe(QMqttTopicFilter("sb/speed/pitot"));
+        auto subscription = mClient->subscribe(QMqttTopicFilter("#"));
         if (!subscription) {
             log->print("Could not subscribe. Is there a valid connection?");
         }

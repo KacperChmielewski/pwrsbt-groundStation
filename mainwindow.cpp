@@ -34,8 +34,9 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::rxData(QString head, QString value) {
-    log->print(head+": "+value);
-    if(head == "sb/speed/pitot"){
-
+    if(head == "sb/speed/pitot") {
+        ui->lcdSpeed1->display(value);
+    } else {
+        log->print(head+": "+value);
     }
 }
