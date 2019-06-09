@@ -22,6 +22,7 @@ private:
     QPushButton* qConnect;
 
     void mqttConnect();
+    void mqttDisconnect();
     void uiUpdate();
 
 public:

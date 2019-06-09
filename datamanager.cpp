@@ -48,20 +48,14 @@ void dataManager::mqttStatusReport() {
 
 }
 
-void dataManager::uiUpdate() {
-    if(mClient->state() == QMqttClient::ClientState::Connected) {
-        qHost->setDisabled(true);
-        qPort->setDisabled(true);
-        qConnect->setText("Disconnect");
-    } else {
-        qHost->setDisabled(false);
-        qPort->setDisabled(false);
-        qConnect->setText("Connect");
-    }
-}
+
 
 void dataManager::connectButtonClicked() {
-    mqttConnect();
+    if(mClient->state() == QMqttClient::ClientState::Connected) {
+        mqttDisconnect();
+    } else {
+        mqttConnect();
+    }
 }
 
 void dataManager::mqttStatusChanged() {
@@ -76,4 +70,20 @@ void dataManager::mqttConnect() {
     mClient->connectToHost();
     log->print("connecting to: "+ mClient->hostname() + ":"
                      + QString::number(mClient->port()) );
+}
+
+void dataManager::mqttDisconnect() {
+    mClient->disconnectFromHost();
+}
+
+void dataManager::uiUpdate() {
+    if(mClient->state() == QMqttClient::ClientState::Connected) {
+        qHost->setDisabled(true);
+        qPort->setDisabled(true);
+        qConnect->setText("Disconnect");
+    } else {
+        qHost->setDisabled(false);
+        qPort->setDisabled(false);
+        qConnect->setText("Connect");
+    }
 }
