@@ -41,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
     chart->legend()->hide();
     chart->addSeries(series);
     chart->createDefaultAxes();
-    chart->setTitle("Simple line chart example");
+    chart->setTitle("Speed");
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
