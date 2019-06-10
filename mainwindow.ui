@@ -294,6 +294,9 @@
       </layout>
      </widget>
     </item>
+    <item row="1" column="1">
+     <widget class="QWidget" name="qMojWykres" native="true"/>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">

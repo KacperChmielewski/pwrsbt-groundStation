@@ -37,8 +37,6 @@ MainWindow::MainWindow(QWidget *parent) :
     series->append(7, 4);
     series->append(10, 5);
 
-    *series << QPointF(11, 1) << QPointF(13, 3) << QPointF(17, 6) << QPointF(18, 3) << QPointF(20, 2);
-
     QChart *chart = new QChart();
     chart->legend()->hide();
     chart->addSeries(series);
@@ -47,9 +45,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
-    this->setCentralWidget(chartView);
-    this->resize(400, 300);
-    this->show();
+    ui->gridLayout->addWidget(chartView, 1, 1, 1, 1); // TODO move this
+
+    *series << QPointF(20, 2);
+
+
 }
 
 MainWindow::~MainWindow()
