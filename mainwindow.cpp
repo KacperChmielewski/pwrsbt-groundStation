@@ -6,12 +6,13 @@
 #include "QtMqtt/QMqttClient"
 #include "QtMqtt/QMqttTopicFilter"
 
+#include <QtCharts/QChartView>
+
 #include "logger.h"
 #include "datamanager.h"
 
-#include <QtCharts/QLineSeries>
-#include <QtCharts/QChart>
-#include <QtCharts/QChartView>
+#include "chart.h"
+
 
 using namespace QtCharts;
 
@@ -30,25 +31,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(dm, SIGNAL (pushData(QString, QString)), this, SLOT (rxData(QString, QString)));
 
-    QLineSeries *series = new QLineSeries();
-    series->append(0, 6);
-    series->append(2, 4);
-    series->append(3, 8);
-    series->append(7, 4);
-    series->append(10, 5);
-
-    QChart *chart = new QChart();
+    Chart *chart = new Chart;
+    chart->setTitle("Dynamic spline chart");
     chart->legend()->hide();
-    chart->addSeries(series);
-    chart->createDefaultAxes();
-    chart->setTitle("Simple line chart example");
-    QChartView *chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
+    chart->setAnimationOptions(QChart::AllAnimations);
+    QChartView chartView(chart);
+    chartView.setRenderHint(QPainter::Antialiasing);
+    this->setCentralWidget(&chartView);
 
-    ui->gridLayout->addWidget(chartView, 1, 1, 1, 1); // TODO move this
-
-    *series << QPointF(20, 2);
-
+//    ui->gridLayout->addWidget(&chartView, 1, 1, 1, 1); // TODO move this
+//    chart->createDefaultAxes();
 
 }
 
