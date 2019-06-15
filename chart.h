@@ -45,15 +45,11 @@ class Chart: public QChart
 {
     Q_OBJECT
 public:
-    Chart(QGraphicsItem *parent = 0, Qt::WindowFlags wFlags = 0);
+    Chart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = nullptr);
     virtual ~Chart();
-    void rxData(int value);
-
-public slots:
-    void handleTimeout();
+    void rxData(double value);
 
 private:
-    QTimer m_timer;
     QLineSeries *m_series;
     QStringList m_titles;
     QValueAxis *m_axisX;

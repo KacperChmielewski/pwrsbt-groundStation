@@ -44,7 +44,6 @@ Chart::Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags):
     m_y(1)
 {
 //    QObject::connect(&m_timer, &QTimer::timeout, this, &Chart::handleTimeout);
-    m_timer.setInterval(1000);
 
     m_series = new QLineSeries(this);
     QPen green(Qt::red);
@@ -60,9 +59,7 @@ Chart::Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags):
     m_series->attachAxis(m_axisY);
     m_axisX->setTickCount(5);
     m_axisX->setRange(0, 10);
-    m_axisY->setRange(0, 10);
-
-    m_timer.start();
+    m_axisY->setRange(0, 20);
 }
 
 Chart::~Chart()
@@ -70,22 +67,10 @@ Chart::~Chart()
 
 }
 
-void Chart::handleTimeout()
+void Chart::rxData(double value)
 {
     qreal x = plotArea().width() / m_axisX->tickCount();
-    qreal y = (m_axisX->max() - m_axisX->min()) / m_axisX->tickCount();
-    m_x += y;
-    m_y = QRandomGenerator::global()->bounded(5) - 2.5;
-    m_series->append(m_x, m_y);
-    scroll(x, 0);
-    if (m_x == 100)
-        m_timer.stop();
-}
-
-void Chart::rxData(int value)
-{
-    qreal x = plotArea().width() / m_axisX->tickCount();
-    qreal y = (m_axisX->max() - m_axisX->min()) / m_axisX->tickCount();
+    qreal y = (m_axisX->max() - m_axisX->min()) / m_axisX->tickCount() + 50;
     m_x += y;
     m_y = value;
     m_series->append(m_x, m_y);
