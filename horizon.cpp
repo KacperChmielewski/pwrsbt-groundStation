@@ -4,7 +4,8 @@
 
 Horizon::Horizon(QWidget *parent) : QWidget(parent)
 {
-
+    roll = 0;
+    pitch = 0;
 }
 
 void Horizon::paintEvent(QPaintEvent*)
@@ -16,20 +17,33 @@ void Horizon::paintEvent(QPaintEvent*)
     painter->setBrush(background);
     painter->drawRect(0, 0, width(), height());
 
-    int w = width();
-    int h = height() / 2;
+    int w = width()*2;
+    int h = height()*2;
+
 
 
     QBrush earth(QColor(200, 80, 20));
     painter->setBrush(earth);
-    QRect rect(0, height()/2, w, h);
+
+
+    double heightPitchFactor = pitch / 60 / 2;
+
+    painter->translate(width()/2, height()/2 + heightPitchFactor*height());
+    painter->rotate(roll);
+
+    QRect rect(-width(), 0, w, h);
     painter->drawRect(rect);
 
-    painter->rotate(60);
-    painter->save();
+
+
+
 }
 
-void Horizon::transformPainter(QPainter &painter)
-{
-    painter.rotate(60);
+void Horizon::setRoll(double value) {
+    roll = value;
+    update();
+}
+
+void Horizon::setPitch(double value) {
+    pitch = value;
 }
