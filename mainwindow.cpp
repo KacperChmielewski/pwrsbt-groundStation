@@ -6,13 +6,13 @@
 #include "QtMqtt/QMqttClient"
 #include "QtMqtt/QMqttTopicFilter"
 
-#include <QtCharts/QChartView>
-
 #include "logger.h"
 #include "datamanager.h"
 
 #include "chart.h"
-
+#include <QtCharts/QChartView>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QMainWindow>
 
 using namespace QtCharts;
 
