@@ -16,6 +16,9 @@
 
 using namespace QtCharts;
 
+static Chart *chart;
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -31,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(dm, SIGNAL (pushData(QString, QString)), this, SLOT (rxData(QString, QString)));
 
-    Chart *chart = new Chart;
+    chart = new Chart;
     chart->setTitle("Dynamic spline chart");
     chart->legend()->hide();
     chart->setAnimationOptions(QChart::AllAnimations);
@@ -40,10 +43,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     chartView->setRenderHint(QPainter::Antialiasing);
 
-    chart->rxData(1);
-
-    chart->rxData(2);
-    chart->rxData(1);
 
     ui->gridLayout->addWidget(chartView, 1, 1, 1, 1); // TODO move this
 }
@@ -57,6 +56,7 @@ void MainWindow::rxData(QString head, QString value) {
     if(head == "sb/speed/pitot") {
         double v = value.toDouble();
         char buff[20];
+        chart->rxData(value.toDouble());
         sprintf(buff, "%.1f", v);
         ui->lcdSpeed1->display(QString(buff));
     } else if(head == "sb/speed/gps") {
