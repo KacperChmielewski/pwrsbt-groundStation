@@ -14,6 +14,8 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 
+#include "horizon.h"
+
 using namespace QtCharts;
 
 static Chart *chart;
@@ -37,14 +39,17 @@ MainWindow::MainWindow(QWidget *parent) :
     chart = new Chart;
     chart->setTitle("Speed");
     chart->legend()->hide();
-//    chart->setAnimationOptions(QChart::AllAnimations);
-
     QChartView *chartView = new QChartView(chart);
-
     chartView->setRenderHint(QPainter::Antialiasing);
+////    ui->gridLayout->addWidget(chartView, 1, 1, 1, 1); // TODO move this
+
+    Horizon* horizon = new Horizon(this);
+    ui->gridLayout->addWidget(horizon, 1, 1, 1, 1); // TODO move this
+
+//    this->setCentralWidget(horizon);
 
 
-    ui->gridLayout->addWidget(chartView, 1, 1, 1, 1); // TODO move this
+
 }
 
 MainWindow::~MainWindow()
