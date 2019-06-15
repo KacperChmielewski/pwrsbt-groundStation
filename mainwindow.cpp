@@ -72,8 +72,18 @@ void MainWindow::rxData(QString head, QString value) {
     } else if(head == "sb/battery/temp") {
         double v = value.toDouble();
         char buff[20];
-        sprintf(buff, "%.2f *C", v);
+        sprintf(buff, "%.2f °C", v);
         ui->qBattTemp->setText(QString(buff));
+    } else if(head == "sb/euler/roll") {
+        double v = value.toDouble();
+        char buff[20];
+        sprintf(buff, "%.2f °", v);
+        ui->qRoll->setText(QString(buff));
+    } else if(head == "sb/euler/pitch") {
+        double v = value.toDouble();
+        char buff[20];
+        sprintf(buff, "%.2f °", v);
+        ui->qPitch->setText(QString(buff));
     } else if(head == "sb/battery/curr") {
         double v = value.toDouble();
         char buff[20];
