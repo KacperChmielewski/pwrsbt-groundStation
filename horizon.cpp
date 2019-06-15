@@ -12,8 +12,13 @@ void Horizon::paintEvent(QPaintEvent*)
 {
     QPainter* painter = new QPainter(this);
 
-    // Background
+
     QBrush background(QColor(0, 180, 255));
+    QBrush earth(QColor(200, 80, 20));
+    QBrush arrow(QColor(200, 150, 0));
+
+    // Background
+
     painter->setBrush(background);
     painter->drawRect(0, 0, width(), height());
 
@@ -22,7 +27,6 @@ void Horizon::paintEvent(QPaintEvent*)
 
 
 
-    QBrush earth(QColor(200, 80, 20));
     painter->setBrush(earth);
 
 
@@ -33,6 +37,31 @@ void Horizon::paintEvent(QPaintEvent*)
 
     QRect rect(-width(), 0, w, h);
     painter->drawRect(rect);
+
+
+
+    int baseW = width()/5;
+    int baseH = width()/10;
+
+    painter->setBrush(arrow);
+
+    QPolygon centerArrow;
+    centerArrow << QPoint(-baseW, baseH) << QPoint(0, baseH*2/3) << QPoint(baseW, baseH) << QPoint(0, 0);
+    painter->drawPolygon(centerArrow);
+
+
+    baseW = width()/10;
+    baseH = width()/30;
+
+    painter->translate(-width()/3, 0);
+    QPolygon sideArrow;
+    sideArrow << QPoint(-baseW, baseH) << QPoint(-baseW, -baseH) << QPoint(0, -baseH) << QPoint(baseW/3, 0) << QPoint(0, baseH);
+    painter->drawPolygon(sideArrow);
+
+    painter->translate(width()/3, 0);
+    painter->translate(width()/3, 0);
+    painter->rotate(180);
+    painter->drawPolygon(sideArrow);
 
 
 
