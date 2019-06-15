@@ -49,6 +49,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     *series << QPointF(20, 2);
 
+//    QRect rectangle(5, 5, width() - 5, height() - 5);
+//    QPainter *painter = new QPainter();
+//    painter->drawRect(rectangle);
+
+//    ui->gridLayout->addWidget(painter, 1, 1, 1, 1); // TODO move this
+
 
 }
 
