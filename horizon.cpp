@@ -25,10 +25,7 @@ void Horizon::paintEvent(QPaintEvent*)
     int w = width()*2;
     int h = height()*2;
 
-
-
     painter->setBrush(earth);
-
 
     double heightPitchFactor = pitch / 60 / 2;
 
@@ -36,7 +33,28 @@ void Horizon::paintEvent(QPaintEvent*)
     painter->rotate(roll);
 
     QRect rect(-width(), 0, w, h);
+
+    double yawFactor = height()/12;
+
+    painter->setPen(QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap));
     painter->drawRect(rect);
+
+    painter->setPen(QPen(Qt::white, 1, Qt::SolidLine, Qt::RoundCap));
+
+    for (int i = 1; i < 6; ++i) {
+        int lineY = yawFactor * i;
+        painter->drawLine(QPoint(-width()/4, lineY), QPoint(width()/4, lineY));
+    }
+
+    for (int i = 1; i < 6; ++i) {
+        int lineY = -yawFactor * i;
+        painter->drawLine(QPoint(-width()/4, lineY), QPoint(width()/4, lineY));
+    }
+
+
+    painter->setPen(QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap));
+
+
     painter->rotate(-roll);
     painter->translate(0, - heightPitchFactor*height());
 
