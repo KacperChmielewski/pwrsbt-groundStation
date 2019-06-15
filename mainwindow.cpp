@@ -35,9 +35,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(dm, SIGNAL (pushData(QString, QString)), this, SLOT (rxData(QString, QString)));
 
     chart = new Chart;
-    chart->setTitle("Dynamic spline chart");
+    chart->setTitle("Speed");
     chart->legend()->hide();
-    chart->setAnimationOptions(QChart::AllAnimations);
+//    chart->setAnimationOptions(QChart::AllAnimations);
 
     QChartView *chartView = new QChartView(chart);
 
@@ -55,8 +55,8 @@ MainWindow::~MainWindow()
 void MainWindow::rxData(QString head, QString value) {
     if(head == "sb/speed/pitot") {
         double v = value.toDouble();
+        chart->rxData(v);
         char buff[20];
-        chart->rxData(value.toDouble());
         sprintf(buff, "%.1f", v);
         ui->lcdSpeed1->display(QString(buff));
     } else if(head == "sb/speed/gps") {
@@ -81,6 +81,7 @@ void MainWindow::rxData(QString head, QString value) {
         ui->qRoll->setText(QString(buff));
     } else if(head == "sb/euler/pitch") {
         double v = value.toDouble();
+//        chart->rxData(v);
         char buff[20];
         sprintf(buff, "%.2f °", v);
         ui->qPitch->setText(QString(buff));

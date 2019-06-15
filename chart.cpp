@@ -40,14 +40,14 @@ Chart::Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags):
     m_axisX(new QValueAxis()),
     m_axisY(new QValueAxis()),
     m_step(0),
-    m_x(10),
-    m_y(1)
+    m_x(40),
+    m_y(0)
 {
 //    QObject::connect(&m_timer, &QTimer::timeout, this, &Chart::handleTimeout);
 
     m_series = new QLineSeries(this);
     QPen green(Qt::red);
-    green.setWidth(3);
+    green.setWidth(2);
     m_series->setPen(green);
     m_series->append(m_x, m_y);
 
@@ -57,9 +57,9 @@ Chart::Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags):
     addAxis(m_axisY,Qt::AlignLeft);
     m_series->attachAxis(m_axisX);
     m_series->attachAxis(m_axisY);
-    m_axisX->setTickCount(5);
-    m_axisX->setRange(0, 20);
-    m_axisY->setRange(0, 20);
+    m_axisX->setTickCount(50);
+    m_axisX->setRange(0, 40);
+    m_axisY->setRange(0, 50);
 }
 
 Chart::~Chart()
