@@ -37,6 +37,8 @@ void Horizon::paintEvent(QPaintEvent*)
 
     QRect rect(-width(), 0, w, h);
     painter->drawRect(rect);
+    painter->rotate(-roll);
+    painter->translate(0, - heightPitchFactor*height());
 
 
 
