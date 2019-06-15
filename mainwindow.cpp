@@ -35,13 +35,12 @@ MainWindow::MainWindow(QWidget *parent) :
     chart->setTitle("Dynamic spline chart");
     chart->legend()->hide();
     chart->setAnimationOptions(QChart::AllAnimations);
-    QChartView chartView(chart);
-    chartView.setRenderHint(QPainter::Antialiasing);
-    this->setCentralWidget(&chartView);
 
-//    ui->gridLayout->addWidget(&chartView, 1, 1, 1, 1); // TODO move this
-//    chart->createDefaultAxes();
+    QChartView *chartView = new QChartView(chart);
 
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    ui->gridLayout->addWidget(chartView, 1, 1, 1, 1); // TODO move this
 }
 
 MainWindow::~MainWindow()
