@@ -40,7 +40,7 @@ Chart::Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags):
     m_axisX(new QValueAxis()),
     m_axisY(new QValueAxis()),
     m_step(0),
-    m_x(5),
+    m_x(10),
     m_y(1)
 {
 //    QObject::connect(&m_timer, &QTimer::timeout, this, &Chart::handleTimeout);
@@ -58,7 +58,7 @@ Chart::Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags):
     m_series->attachAxis(m_axisX);
     m_series->attachAxis(m_axisY);
     m_axisX->setTickCount(5);
-    m_axisX->setRange(0, 10);
+    m_axisX->setRange(0, 20);
     m_axisY->setRange(0, 20);
 }
 
@@ -70,7 +70,7 @@ Chart::~Chart()
 void Chart::rxData(double value)
 {
     qreal x = plotArea().width() / m_axisX->tickCount();
-    qreal y = (m_axisX->max() - m_axisX->min()) / m_axisX->tickCount() + 50;
+    qreal y = (m_axisX->max() - m_axisX->min()) / m_axisX->tickCount();
     m_x += y;
     m_y = value;
     m_series->append(m_x, m_y);
