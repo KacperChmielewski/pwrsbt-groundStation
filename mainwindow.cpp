@@ -40,6 +40,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     chartView->setRenderHint(QPainter::Antialiasing);
 
+    chart->rxData(1);
+
+    chart->rxData(2);
+    chart->rxData(1);
+
     ui->gridLayout->addWidget(chartView, 1, 1, 1, 1); // TODO move this
 }
 

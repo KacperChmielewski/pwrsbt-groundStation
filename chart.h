@@ -34,7 +34,7 @@
 #include <QtCore/QTimer>
 
 QT_CHARTS_BEGIN_NAMESPACE
-class QSplineSeries;
+class QLineSeries;
 class QValueAxis;
 QT_CHARTS_END_NAMESPACE
 
@@ -47,13 +47,14 @@ class Chart: public QChart
 public:
     Chart(QGraphicsItem *parent = 0, Qt::WindowFlags wFlags = 0);
     virtual ~Chart();
+    void rxData(int value);
 
 public slots:
     void handleTimeout();
 
 private:
     QTimer m_timer;
-    QSplineSeries *m_series;
+    QLineSeries *m_series;
     QStringList m_titles;
     QValueAxis *m_axisX;
     QValueAxis *m_axisY;
