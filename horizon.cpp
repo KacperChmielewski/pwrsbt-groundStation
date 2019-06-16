@@ -22,7 +22,7 @@ void Horizon::paintEvent(QPaintEvent*)
     painter->setBrush(background);
     painter->drawRect(0, 0, width(), height());
 
-    int w = width()*2;
+    int w = width()*4;
     int h = height()*2;
 
     painter->setBrush(earth);
@@ -32,7 +32,7 @@ void Horizon::paintEvent(QPaintEvent*)
     painter->translate(width()/2, height()/2 + heightPitchFactor*height());
     painter->rotate(roll);
 
-    QRect rect(-width(), 0, w, h);
+    QRect rect(-width()*2, 0, w, h);
 
     double yawFactor = height()/12;
 
