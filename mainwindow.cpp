@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
     chart->legend()->hide();
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-////    ui->gridLayout->addWidget(chartView, 1, 1, 1, 1); // TODO move this
+    ui->gridLayout->addWidget(chartView, 1, 2, 1, 1);
 
     horizon = new Horizon(this);
     ui->gridLayout->addWidget(horizon, 1, 1, 1, 1); // TODO move this

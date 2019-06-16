@@ -155,6 +155,12 @@
        </item>
        <item row="6" column="2">
         <widget class="QLabel" name="label_13">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
           <string>pitch</string>
          </property>
@@ -162,6 +168,12 @@
        </item>
        <item row="6" column="3">
         <widget class="QLabel" name="qPitch">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
           <string>0</string>
          </property>
@@ -169,6 +181,12 @@
        </item>
        <item row="6" column="1">
         <widget class="QLabel" name="qTextHeightBack">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
           <string>0</string>
          </property>
@@ -204,6 +222,12 @@
        </item>
        <item row="6" column="0">
         <widget class="QLabel" name="qTextHeightFront">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
           <string>0</string>
          </property>
@@ -251,21 +275,10 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QWidget" name="qMojWykres" native="true"/>
+     <widget class="QWidget" name="qMojHoryzont" native="true"/>
     </item>
     <item row="1" column="2">
-     <widget class="QGroupBox" name="groupBox_4">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="title">
-       <string/>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_5"/>
-     </widget>
+     <widget class="QWidget" name="qMojWykres" native="true"/>
     </item>
    </layout>
   </widget>
