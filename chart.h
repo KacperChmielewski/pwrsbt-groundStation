@@ -1,3 +1,9 @@
+/*!
+* \file
+* \brief Definicja klasy wykresu
+*
+* Plik zawiera definicję klasy Chart
+*/
 /****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
@@ -39,13 +45,23 @@ class QValueAxis;
 QT_CHARTS_END_NAMESPACE
 
 QT_CHARTS_USE_NAMESPACE
-
+/*!
+* \brief Interaktywny wykres
+*
+* Klasa jest odpowiedzialna za rysowanie danych na wykresie.
+*/
 class Chart: public QChart
 {
     Q_OBJECT
 public:
     Chart(QGraphicsItem *parent = nullptr, Qt::WindowFlags wFlags = nullptr);
     virtual ~Chart();
+    /*!
+     * \brief Odbiór danych
+     *
+     * Odbiera i rysuje na wykresie nowy punkt
+     * \param[in] value - wartość nowego punktu
+     */
     void rxData(double value);
 
 private:
