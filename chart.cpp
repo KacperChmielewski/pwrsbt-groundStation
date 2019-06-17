@@ -36,19 +36,18 @@
 
 Chart::Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags):
     QChart(QChart::ChartTypeCartesian, parent, wFlags),
-    m_series(0),
+    m_series(nullptr),
     m_axisX(new QValueAxis()),
     m_axisY(new QValueAxis()),
     m_step(0),
     m_x(40),
     m_y(0)
 {
-//    QObject::connect(&m_timer, &QTimer::timeout, this, &Chart::handleTimeout);
 
     m_series = new QLineSeries(this);
-    QPen green(Qt::red);
-    green.setWidth(2);
-    m_series->setPen(green);
+    QPen red(Qt::red);
+    red.setWidth(2);
+    m_series->setPen(red);
     m_series->append(m_x, m_y);
 
     addSeries(m_series);
@@ -60,6 +59,7 @@ Chart::Chart(QGraphicsItem *parent, Qt::WindowFlags wFlags):
     m_axisX->setTickCount(50);
     m_axisX->setRange(0, 40);
     m_axisY->setRange(0, 50);
+    axisX()->hide();
 }
 
 Chart::~Chart()

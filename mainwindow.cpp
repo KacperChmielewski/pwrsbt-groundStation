@@ -14,9 +14,12 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 
+#include "horizon.h"
+
 using namespace QtCharts;
 
 static Chart *chart;
+static Horizon* horizon;
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -37,14 +40,12 @@ MainWindow::MainWindow(QWidget *parent) :
     chart = new Chart;
     chart->setTitle("Speed");
     chart->legend()->hide();
-//    chart->setAnimationOptions(QChart::AllAnimations);
-
     QChartView *chartView = new QChartView(chart);
-
     chartView->setRenderHint(QPainter::Antialiasing);
+    ui->gridLayout->addWidget(chartView, 1, 2, 1, 1);
 
-
-    ui->gridLayout->addWidget(chartView, 1, 1, 1, 1); // TODO move this
+    horizon = new Horizon(this);
+    ui->gridLayout->addWidget(horizon, 1, 1, 1, 1); // TODO move this
 }
 
 MainWindow::~MainWindow()
@@ -76,12 +77,15 @@ void MainWindow::rxData(QString head, QString value) {
         ui->qBattTemp->setText(QString(buff));
     } else if(head == "sb/euler/roll") {
         double v = value.toDouble();
+        horizon->setRoll(v);
         char buff[20];
         sprintf(buff, "%.2f °", v);
         ui->qRoll->setText(QString(buff));
     } else if(head == "sb/euler/pitch") {
         double v = value.toDouble();
-//        chart->rxData(v);
+        horizon->setPitch(v);
+
+        //        chart->rxData(v);
         char buff[20];
         sprintf(buff, "%.2f °", v);
         ui->qPitch->setText(QString(buff));

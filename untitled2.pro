@@ -29,6 +29,7 @@ CONFIG += c++11
 SOURCES += \
         chart.cpp \
         datamanager.cpp \
+        horizon.cpp \
         logger.cpp \
         main.cpp \
         mainwindow.cpp
@@ -36,6 +37,7 @@ SOURCES += \
 HEADERS += \
         chart.h \
         datamanager.h \
+        horizon.h \
         logger.h \
         mainwindow.h
 
