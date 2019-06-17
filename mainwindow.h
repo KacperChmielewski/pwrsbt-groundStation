@@ -20,7 +20,7 @@ public slots:
     void rxData(QString head, QString value);
 private:
     Ui::MainWindow *ui;
-    logger* log;
+    Logger* log;
 };
 
 #endif // MAINWINDOW_H

@@ -1,21 +1,21 @@
 #include "datamanager.h"
 
-dataManager::dataManager(QObject *parent) : QObject(parent)
+DataManager::DataManager(QObject *parent) : QObject(parent)
 {
     mClient = new QMqttClient(this);
 
 
-    connect(mClient, &QMqttClient::stateChanged, this, &dataManager::mqttStatusChanged);  // todo idk whats goin on here
-    connect(mClient, &QMqttClient::messageReceived, this, &dataManager::mqttMessageRX);
+    connect(mClient, &QMqttClient::stateChanged, this, &DataManager::mqttStatusChanged);  // todo idk whats goin on here
+    connect(mClient, &QMqttClient::messageReceived, this, &DataManager::mqttMessageRX);
 
 }
 
-void dataManager::setLogger(logger* l) {
+void DataManager::setLogger(logger* l) {
     log = l;
     log->print("dataManager Init");
 }
 
-void dataManager::setUI(QLineEdit* host, QLineEdit* port, QPushButton* button) {
+void DataManager::setUI(QLineEdit* host, QLineEdit* port, QPushButton* button) {
     qHost = host;
     qPort = port;
     qConnect = button;
@@ -26,7 +26,7 @@ void dataManager::setUI(QLineEdit* host, QLineEdit* port, QPushButton* button) {
     connect(qConnect, SIGNAL (released()), this, SLOT (connectButtonClicked()));
 }
 
-void dataManager::mqttStatusReport() {
+void DataManager::mqttStatusReport() {
 
     QString state;
 
@@ -46,7 +46,7 @@ void dataManager::mqttStatusReport() {
 
 
 
-void dataManager::connectButtonClicked() {
+void DataManager::connectButtonClicked() {
     if(mClient->state() == QMqttClient::Connected) {
         mqttDisconnect();
     } else {
@@ -54,7 +54,7 @@ void dataManager::connectButtonClicked() {
     }
 }
 
-void dataManager::mqttStatusChanged() {
+void DataManager::mqttStatusChanged() {
     mqttStatusReport();
     uiUpdate();
     mqttSubscribe();
@@ -62,7 +62,7 @@ void dataManager::mqttStatusChanged() {
 }
 
 
-void dataManager::mqttConnect() {
+void DataManager::mqttConnect() {
     mClient->setHostname(qHost->text());
     mClient->setPort((qint16) qPort->text().toInt()); // TODO: implicit cast
 
@@ -71,11 +71,11 @@ void dataManager::mqttConnect() {
                      + QString::number(mClient->port()) );
 }
 
-void dataManager::mqttDisconnect() {
+void DataManager::mqttDisconnect() {
     mClient->disconnectFromHost();
 }
 
-void dataManager::mqttSubscribe() {
+void DataManager::mqttSubscribe() {
     if(mClient->state() == QMqttClient::Connected){
         auto subscription = mClient->subscribe(QMqttTopicFilter("#"));
         if (!subscription) {
@@ -84,12 +84,12 @@ void dataManager::mqttSubscribe() {
     }
 }
 
-void dataManager::mqttMessageRX(const QByteArray &message, const QMqttTopicName &topic) {
+void DataManager::mqttMessageRX(const QByteArray &message, const QMqttTopicName &topic) {
 //    log->print(topic.name() + ": " + message);
     emit pushData(topic.name(), QString(message));
 }
 
-void dataManager::uiUpdate() {
+void DataManager::uiUpdate() {
     if(mClient->state() == QMqttClient::Connected) {
         qHost->setDisabled(true);
         qPort->setDisabled(true);

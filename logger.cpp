@@ -1,10 +1,10 @@
 #include "logger.h"
 
-logger::logger(QObject *parent) : QObject(parent) {
+Logger::Logger(QObject *parent) : QObject(parent) {
 
 }
 
-void logger::setUI(QPlainTextEdit *txt, QPushButton *btn) {
+void Logger::setUI(QPlainTextEdit *txt, QPushButton *btn) {
     textEdit = txt;
     button = btn;
 
@@ -14,18 +14,18 @@ void logger::setUI(QPlainTextEdit *txt, QPushButton *btn) {
 }
 
 
-void logger::print(QString text){
+void Logger::print(QString text){
     textEdit->insertPlainText(text + "\r\n");
 }
 
-void logger::print(const char* text){
+void Logger::print(const char* text){
     print(QString(text));
 }
 
-void logger::clean() {
+void Logger::clean() {
     textEdit->clear();
 }
 
-void logger::cleanButtonClicked() {
+void Logger::cleanButtonClicked() {
     clean();
 }

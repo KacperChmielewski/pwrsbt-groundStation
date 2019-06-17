@@ -6,14 +6,14 @@
 #include <QPlainTextEdit>
 #include <QPushButton>
 
-class logger : public QObject
+class Logger : public QObject
 {
     Q_OBJECT
 private:
     QPlainTextEdit* textEdit;
     QPushButton* button;
 public:
-    explicit logger(QObject *parent = nullptr);
+    explicit Logger(QObject *parent = nullptr);
     void setUI(QPlainTextEdit *txt, QPushButton *btn);
     void print(QString text);
     void print(const char* text);

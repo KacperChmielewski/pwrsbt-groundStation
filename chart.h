@@ -40,7 +40,6 @@ QT_CHARTS_END_NAMESPACE
 
 QT_CHARTS_USE_NAMESPACE
 
-//![1]
 class Chart: public QChart
 {
     Q_OBJECT
@@ -58,6 +57,5 @@ private:
     qreal m_x;
     qreal m_y;
 };
-//![1]
 
 #endif /* CHART_H */

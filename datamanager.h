@@ -11,12 +11,12 @@
 
 #include "logger.h"
 
-class dataManager : public QObject
+class DataManager : public QObject
 {
     Q_OBJECT
 private:
     QMqttClient* mClient;
-    logger* log;
+    Logger* log;
     QLineEdit* qHost;
     QLineEdit* qPort;
     QPushButton* qConnect;
@@ -28,9 +28,9 @@ private:
     void uiUpdate();
 
 public:
-    explicit dataManager(QObject *parent = nullptr);
+    explicit DataManager(QObject *parent = nullptr);
     void setUI(QLineEdit* host, QLineEdit* port, QPushButton* connect);
-    void setLogger(logger* l);
+    void setLogger(Logger* l);
     void mqttStatusReport();
 
 signals:
