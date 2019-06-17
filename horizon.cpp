@@ -39,23 +39,23 @@ void Horizon::paintEvent(QPaintEvent*)
     painter->setPen(QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap));
     painter->drawRect(rect);
 
+
+
+
+
+
+    painter->rotate(-roll);
+
     painter->setPen(QPen(Qt::white, 1, Qt::SolidLine, Qt::RoundCap));
 
-    for (int i = 1; i < 6; ++i) {
+    for (int i = -5; i < 6; ++i) {
         int lineY = yawFactor * i;
         painter->drawLine(QPoint(-width()/4, lineY), QPoint(width()/4, lineY));
     }
 
-    for (int i = 1; i < 6; ++i) {
-        int lineY = -yawFactor * i;
-        painter->drawLine(QPoint(-width()/4, lineY), QPoint(width()/4, lineY));
-    }
-
-
     painter->setPen(QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap));
 
 
-    painter->rotate(-roll);
     painter->translate(0, - heightPitchFactor*height());
 
 

@@ -46,11 +46,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     horizon = new Horizon(this);
     ui->gridLayout->addWidget(horizon, 1, 1, 1, 1); // TODO move this
-
-//    this->setCentralWidget(horizon);
-
-
-
 }
 
 MainWindow::~MainWindow()
