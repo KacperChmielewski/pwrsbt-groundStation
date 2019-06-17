@@ -28,10 +28,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    log = new logger(this);
+    log = new Logger(this);
     log->setUI(ui->wLoggerBox, ui->wLoggerButton);
 
-    dataManager* dm = new dataManager(this);
+    DataManager* dm = new DataManager(this);
     dm->setLogger(log);
     dm->setUI(ui->hostLine, ui->portLine, ui->mqConnect);
 

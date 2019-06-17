@@ -10,7 +10,7 @@ DataManager::DataManager(QObject *parent) : QObject(parent)
 
 }
 
-void DataManager::setLogger(logger* l) {
+void DataManager::setLogger(Logger* l) {
     log = l;
     log->print("dataManager Init");
 }
